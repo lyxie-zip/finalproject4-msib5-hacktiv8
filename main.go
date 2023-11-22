@@ -31,5 +31,10 @@ func main() {
 
 	r := routers.StartApp(&userController, &categoryController, &productController, &transactionController)
 
-	r.Run(":3000")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+
+	r.Run(":" + port)
 }
