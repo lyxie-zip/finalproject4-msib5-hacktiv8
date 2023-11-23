@@ -73,7 +73,7 @@ func (tc *TransactionController) GetMyTransactions(c *gin.Context) {
 	transactions, errS := tc.TransactionRepo.GetTransactionHistory(user_id)
 	if errS != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "error get transaction history",
+			"error": "error get my transaction history",
 		})
 
 		return
@@ -107,7 +107,7 @@ func (tc *TransactionController) GetAllTransactions(c *gin.Context) {
 	transactions, errS := tc.TransactionRepo.GetAllTransactionHistory()
 	if errS != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "error get transaction history",
+			"error": "error get all transaction history",
 		})
 
 		return
