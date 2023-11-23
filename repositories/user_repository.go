@@ -51,7 +51,7 @@ func (r *UserRepositoryImpl) LoginCheck(email, password string) (string, error) 
 
 	u := models.User{}
 
-	err = r.DB.Model(models.User{}).Where("email = ? AND deleted_at IS NULL", email).Take(&u).Error
+	err = r.DB.Model(models.User{}).Where("email = ?", email).Take(&u).Error
 
 	if err != nil {
 		return "", err
