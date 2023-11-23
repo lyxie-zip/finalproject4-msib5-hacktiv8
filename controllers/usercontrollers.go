@@ -152,7 +152,7 @@ func (uc *UserController) TopUpBalance(c *gin.Context) {
 	}
 
 	// validasi jumlah top-up
-	if topupData.Balance > 100000000 {
+	if topupData.Balance > 10000000 {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Maximum top-up is Rp 100.000.000",
 		})
