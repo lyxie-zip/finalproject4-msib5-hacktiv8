@@ -111,6 +111,10 @@ func (r *UserRepositoryImpl) TopUpBalance(userID uint, balance int) (int, error)
 		return u.Balance, errors.New("Topup balance must be greater than 0s")
 	}
 
+	if u.Balance+balance > 100000000 {
+		return u.Balance, errors.New("Balance cannot be more than 100000000")
+	}
+
 	errQ := r.DB.Model(&u).Where("id = ?", userID).Update("balance", gorm.Expr("balance + ?", balance)).Error
 
 	if errQ != nil {
