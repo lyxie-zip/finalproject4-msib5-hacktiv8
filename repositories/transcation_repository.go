@@ -53,7 +53,7 @@ func (r *TransactionRepositoryImpl) CreateTransaction(userID uint, request dto.T
 			return errors.New("category not found")
 		}
 
-		if err := tx.Model(&category).Update("sold_product_amount", gorm.Expr("sold_product_amount + ?", request.Quantity)).Error; err != nil {
+		if err := tx.Model(&category).Update("sold_product", gorm.Expr("sold_product + ?", request.Quantity)).Error; err != nil {
 			return errors.New("failed to update category sold")
 		}
 
