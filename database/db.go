@@ -42,7 +42,7 @@ func Config() (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	// migration
 	db.AutoMigrate(&models.User{}, &models.Category{}, &models.Product{}, &models.TransactionHistory{})
 
 	admin.SeedAdmin(db)
