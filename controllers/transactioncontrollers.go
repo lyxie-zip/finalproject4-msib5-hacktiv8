@@ -42,7 +42,7 @@ func (tc *TransactionController) CreateTransaction(c *gin.Context) {
 	transaction, errS := tc.TransactionRepo.CreateTransaction(user_id, input)
 	if errS != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "error create transaction",
+			"error": errS.Error(),
 		})
 
 		return
