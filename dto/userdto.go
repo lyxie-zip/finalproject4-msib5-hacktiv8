@@ -12,5 +12,5 @@ type LoginInput struct {
 }
 
 type TopUpInput struct {
-	Balance int `json:"balance" binding:"required,min=0,max=100000000"`
+	Balance int `json:"balance" binding:"required"`
 }
