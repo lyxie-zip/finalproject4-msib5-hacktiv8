@@ -9,7 +9,7 @@ import (
 	"github.com/elysiamori/finalproject4-hacktiv8-msib5/models"
 
 	"github.com/joho/godotenv"
-	"gorm.io/driver/postgres"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -28,16 +28,15 @@ func Config() (*gorm.DB, error) {
 	}
 
 	config := ConfigDB{
-		host:     os.Getenv("PGHOST"),
-		port:     os.Getenv("PGPORT"),
-		user:     os.Getenv("PGUSER"),
-		password: os.Getenv("PGPASSWORD"),
-		dbname:   os.Getenv("PGDATABASE"),
+		host:     os.Getenv("MYSQLHOST"),
+		port:     os.Getenv("MYSQLPORT"),
+		user:     os.Getenv("MYSQLUSER"),
+		password: os.Getenv("MYSQLPASSWORD"),
+		dbname:   os.Getenv("MYSQLDATABASE"),
 	}
 
-	conn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", config.user, config.password, config.host, config.port, config.dbname)
-
-	db, err := gorm.Open(postgres.Open(conn), &gorm.Config{})
+	conn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", config.user, config.password, config.host, config.port, config.dbname)
+	db, err := gorm.Open(mysql.Open(conn), &gorm.Config{})
 
 	if err != nil {
 		return nil, err
