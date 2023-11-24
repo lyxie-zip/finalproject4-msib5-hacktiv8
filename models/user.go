@@ -9,7 +9,7 @@ import (
 type User struct {
 	ID          uint                 `gorm:"primaryKey" json:"id"`
 	Fullname    string               `gorm:"not null" json:"full_name" form:"full_name" valid:"required-Your full name is required"`
-	Email       string               `json:"email" form:"email" valid:"email,required-Please enter a valid email address" gorm:"uniqueIndex"`
+	Email       string               `json:"email" form:"email" valid:"email,required-Please enter a valid email address" gorm:"not null unique"`
 	Password    string               `gorm:"not null" json:"password" form:"password" valid:"required-Password is required, minstringlength(6)-Password should be more than 6 chars"`
 	Balance     int                  `gorm:"default:0" json:"balance" valid:"required,min=0,max=100000000"`
 	Role        string               `gorm:"default:customer" json:"role" valid:"required"`
