@@ -9,7 +9,7 @@ import (
 	"github.com/elysiamori/finalproject4-hacktiv8-msib5/models"
 
 	"github.com/joho/godotenv"
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -35,9 +35,9 @@ func Config() (*gorm.DB, error) {
 		dbname:   os.Getenv("MYSQLDATABASE"),
 	}
 
-	conn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", config.user, config.password, config.host, config.port, config.dbname)
+	conn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", config.user, config.password, config.host, config.port, config.dbname)
 
-	db, err := gorm.Open(mysql.Open(conn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(conn), &gorm.Config{})
 
 	if err != nil {
 		return nil, err
