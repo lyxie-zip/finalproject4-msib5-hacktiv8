@@ -28,11 +28,11 @@ func Config() (*gorm.DB, error) {
 	}
 
 	config := ConfigDB{
-		host:     os.Getenv("MYSQLHOST"),
-		port:     os.Getenv("MYSQLPORT"),
-		user:     os.Getenv("MYSQLUSER"),
-		password: os.Getenv("MYSQLPASSWORD"),
-		dbname:   os.Getenv("MYSQLDATABASE"),
+		host:     os.Getenv("PGHOST"),
+		port:     os.Getenv("PGPORT"),
+		user:     os.Getenv("PGUSER"),
+		password: os.Getenv("PGPASSWORD"),
+		dbname:   os.Getenv("PGDATABASE"),
 	}
 
 	conn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", config.user, config.password, config.host, config.port, config.dbname)
